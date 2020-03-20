@@ -1,0 +1,155 @@
+@model CitricosCaribe.Models.Producto
+
+@{
+    ViewData["Title"] = "Details";
+}
+<body>
+<h1>Details</h1>
+
+<div>
+    <h4>Producto</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Nombre)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Nombre)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Descripcion)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CaracteristicasTecnicas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CaracteristicasTecnicas)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.UnidadDeMedida)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.UnidadDeMedida)
+        </dd>
+        
+        <dt class="col-sm-2">
+            Este producto esta presente en: 
+        </dt>
+       
+   
+</div>
+
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#Pedidos" role="tab" aria-controls="nav-home" aria-selected="true">Pedidos</a>
+    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#Solicitudes" role="tab" aria-controls="nav-profile" aria-selected="false">Solicitudes</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#Ofertas" role="tab" aria-controls="nav-contact" aria-selected="false">Ofertas</a>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="Pedidos" role="tabpanel" aria-labelledby="nav-home-tab">
+
+    <table class="table table-bordered table-striped">  
+                
+                <tr>
+                    <th>Numero de Identificación de la Empresa</th>
+                    <th>Empresa</th>
+                    <th>Fecha de Pedido</th>
+                    
+                </tr>
+                @foreach (var item in Model.Pedidos)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaOferta)
+                        </td>
+                        
+                    </tr>
+                }
+    </table>
+
+
+
+
+
+  </div>
+  <div class="tab-pane fade" id="Solicitudes" role="tabpanel" aria-labelledby="nav-profile-tab">
+
+        <table class="table table-bordered table-striped">  
+                
+                <tr>
+                    <th>Numero de Identificación de la Empresa</th>
+                    <th>Empresa</th>
+                    <th>Fecha de Solicitud</th>
+                    
+                </tr>
+                @foreach (var item in Model.Solicitudes)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaOferta)
+                        </td>
+                        
+                    </tr>
+                }
+        </table> 
+
+
+
+
+  </div>
+  <div class="tab-pane fade" id="Ofertas" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <table class="table table-bordered table-striped">  
+                
+                <tr>
+                    <th>Numero de Identificación de la Empresa</th>
+                    <th>Empresa</th>
+                    <th>Fecha de Oferta</th>
+                    
+                </tr>
+                @foreach (var item in Model.Ofertas)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaOferta)
+                        </td>
+                        
+                    </tr>
+                }
+        </table>
+
+
+
+
+  </div>
+</div>
+
+
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+</body>
