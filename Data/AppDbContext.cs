@@ -41,6 +41,8 @@ namespace CitricosCaribe.Data
         public DbSet<ContratoVentaInternacional> ContratosVentasInternacionales { get; set; }
         public DbSet<ContratoCompraNacional> ContratosComprasNacionales { get; set; }
         protected override void OnModelCreating(ModelBuilder modelBuilder){
+            
+            
 
             modelBuilder.Entity<Producto>()
                 .Property(p=>p.Nombre)
