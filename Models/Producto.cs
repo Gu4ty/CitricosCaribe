@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace CitricosCaribe.Models
 {
     public class Producto
     {  
         public int ID { get; set; }
+        [Required]
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string CaracteristicasTecnicas { get; set; }
