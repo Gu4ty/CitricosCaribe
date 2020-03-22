@@ -8,11 +8,14 @@ using Microsoft.EntityFrameworkCore;
 using CitricosCaribe.Data;
 using CitricosCaribe.Models;
 
+
+
 namespace CitricosCaribe.Controllers
 {
     public class VehiculoAsignadoController : Controller
     {
         private readonly AppDbContext _context;
+       
 
         public VehiculoAsignadoController(AppDbContext context)
         {
@@ -62,6 +65,7 @@ namespace CitricosCaribe.Controllers
         public async Task<IActionResult> Create([Bind("TrabajadorID,VehiculoID")] VehiculoAsignado vehiculoAsignado)
         {
             
+
             if (ModelState.IsValid)
             {
                 _context.Add(vehiculoAsignado);
@@ -162,6 +166,17 @@ namespace CitricosCaribe.Controllers
         private bool VehiculoAsignadoExists(int id)
         {
             return _context.VehiculosAsignados.Any(e => e.VehiculoID == id);
+        }
+
+        [AcceptVerbs("Get", "Post")]
+        public async Task<IActionResult> VerificarCI(string CI){
+            
+            var trabajador = await _context.Trabajadores.FindAsync(CI);
+            if(trabajador == null){
+                return Json(data:true);
+            }
+
+            return Json(data:$"CI {CI} Este trabajador ya tiene asignado un vehiculo.");
         }
     }
 }
