@@ -1,0 +1,47 @@
+@model IEnumerable<CitricosCaribe.Models.MedioAsignado>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Trabajador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Medio)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Trabajador.CI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medio.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { item.TrabajadorID,item.MedioID }) |
+                @Html.ActionLink("Details", "Details", new { item.TrabajadorID,item.MedioID  }) |
+                @Html.ActionLink("Delete", "Delete", new { item.TrabajadorID,item.MedioID  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

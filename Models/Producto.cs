@@ -9,7 +9,7 @@ namespace CitricosCaribe.Models
     {  
         public int ID { get; set; }
         [Required]
-        [Remote(controller:"Producto",action: "VerificarNombre")]
+        //[Remote(controller:"Producto",action: "VerificarNombre")]
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public string CaracteristicasTecnicas { get; set; }

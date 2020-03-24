@@ -52,6 +52,7 @@ namespace CitricosCaribe.Controllers
         // GET: VehiculoAsignado/Create
         public IActionResult Create()
         {
+            
             ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI");
             ViewData["VehiculoID"] = new SelectList(_context.Vehiculos, "ID", "ID");
             return View();

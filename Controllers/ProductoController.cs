@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using CitricosCaribe.Data;
 using CitricosCaribe.Models;
 using System.Data;
-using CitricosCaribe.Models.ViewModels;
 using CitricosCaribe.Utils;
 
 namespace CitricosCaribe.Controllers
@@ -161,18 +160,18 @@ namespace CitricosCaribe.Controllers
             return _context.Productos.Any(e => e.ID == id);
         }
 
-        [AcceptVerbs("Get", "Post")]
-        public async Task<IActionResult> VerificarNombre(string Nombre){
+        // [AcceptVerbs("Get", "Post")]
+        // public async Task<IActionResult> VerificarNombre(string Nombre){
             
-            var producto = await _context.Productos
-                            .Where(p => p.Nombre == Nombre)
-                            .FirstOrDefaultAsync();
+        //     var producto = await _context.Productos
+        //                     .Where(p => p.Nombre == Nombre)
+        //                     .FirstOrDefaultAsync();
             
-            if(producto == null){
-                return Json(data:true);
-            }
+        //     if(producto == null){
+        //         return Json(data:true);
+        //     }
 
-            return Json(data:$"Nombre {Nombre} Este nombre ya existe.");
-        }
+        //     return Json(data:$"Nombre {Nombre} Este nombre ya existe.");
+        // }
     }
 }
