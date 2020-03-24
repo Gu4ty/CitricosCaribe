@@ -10,23 +10,23 @@ using CitricosCaribe.Models;
 
 namespace CitricosCaribe.Controllers
 {
-    public class ContratoVentaInternacionalController : Controller
+    public class ContratoCompraNacionalController : Controller
     {
         private readonly AppDbContext _context;
 
-        public ContratoVentaInternacionalController(AppDbContext context)
+        public ContratoCompraNacionalController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: ContratoVentaInternacional
+        // GET: ContratoCompraNacional
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.ContratosVentasInternacionales.Include(c => c.Empresa).Include(c => c.Producto).Include(c => c.Trabajador);
+            var appDbContext = _context.ContratosComprasNacionales.Include(c => c.Empresa).Include(c => c.Producto).Include(c => c.Trabajador);
             return View(await appDbContext.ToListAsync());
         }
 
-        // GET: ContratoVentaInternacional/Details/5
+        // GET: ContratoCompraNacional/Details/5
         public async Task<IActionResult> Details(int? ProductoID,int? TrabajadorID,int? EmpresaID, string FechaPedido, string FechaContrato)
         {
             if (ProductoID == null || TrabajadorID == null || EmpresaID == null || FechaPedido == null || FechaContrato == null)
@@ -35,22 +35,22 @@ namespace CitricosCaribe.Controllers
             }
             DateTime fechaP = DateTime.Parse(FechaPedido);
             DateTime fechaC = DateTime.Parse(FechaContrato);
-            var contratoVentaInternacional = await _context.ContratosVentasInternacionales
+            var contratoCompraNacional = await _context.ContratosComprasNacionales
                 .Include(c => c.Empresa)
                 .Include(c => c.Producto)
                 .Include(c => c.Trabajador)
                 .FirstOrDefaultAsync(m => m.EmpresaID == EmpresaID && m.ProductoID==ProductoID 
                 && m.TrabajadorID==TrabajadorID 
                 && m.FechaPedido==fechaP && m.FechaContrato==fechaC );
-            if (contratoVentaInternacional == null)
+            if (contratoCompraNacional == null)
             {
                 return NotFound();
             }
 
-            return View(contratoVentaInternacional);
+            return View(contratoCompraNacional);
         }
 
-        // GET: ContratoVentaInternacional/Create
+        // GET: ContratoCompraNacional/Create
         public IActionResult Create()
         {
             ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID");
@@ -59,72 +59,72 @@ namespace CitricosCaribe.Controllers
             return View();
         }
 
-        // POST: ContratoVentaInternacional/Create
+        // POST: ContratoCompraNacional/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpresaID,TrabajadorID,ProductoID,FechaPedido,FechaContrato,DeUnaParte,DeLaOtraParte,DeAmbasPartes,ObjetoDelContrato,TipoPago,DineroGanadoUSD,CamposOtros")] ContratoVentaInternacional contratoVentaInternacional)
+        public async Task<IActionResult> Create([Bind("EmpresaID,TrabajadorID,ProductoID,FechaPedido,FechaContrato,DeUnaParte,DeLaOtraParte,DeAmbasPartes,ObjetoDelContrato,TipoPago,DineroGanadoUSD,CamposOtros")] ContratoCompraNacional contratoCompraNacional)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(contratoVentaInternacional);
+                _context.Add(contratoCompraNacional);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", contratoVentaInternacional.EmpresaID);
-            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", contratoVentaInternacional.ProductoID);
-            ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI", contratoVentaInternacional.TrabajadorID);
-            return View(contratoVentaInternacional);
+            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", contratoCompraNacional.EmpresaID);
+            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", contratoCompraNacional.ProductoID);
+            ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI", contratoCompraNacional.TrabajadorID);
+            return View(contratoCompraNacional);
         }
 
-        // GET: ContratoVentaInternacional/Edit/5
+        // GET: ContratoCompraNacional/Edit/5
         public async Task<IActionResult> Edit(int? ProductoID,int? TrabajadorID,int? EmpresaID, string FechaPedido, string FechaContrato)
         {
             if (ProductoID == null || TrabajadorID == null || EmpresaID == null || FechaPedido == null || FechaContrato == null)
-
             {
                 return NotFound();
             }
+           
             DateTime fechaP = DateTime.Parse(FechaPedido);
             DateTime fechaC = DateTime.Parse(FechaContrato);
-            var contratoVentaInternacional = await _context.ContratosVentasInternacionales.FindAsync(EmpresaID,TrabajadorID,ProductoID,fechaC,fechaP);
-            if (contratoVentaInternacional == null)
+            var contratoCompraNacional = await _context.ContratosComprasNacionales.FindAsync(EmpresaID,TrabajadorID,ProductoID,fechaC,fechaP);
+            if (contratoCompraNacional == null)
             {
                 return NotFound();
             }
-            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", contratoVentaInternacional.EmpresaID);
-            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", contratoVentaInternacional.ProductoID);
-            ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI", contratoVentaInternacional.TrabajadorID);
-            return View(contratoVentaInternacional);
+            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", contratoCompraNacional.EmpresaID);
+            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", contratoCompraNacional.ProductoID);
+            ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI", contratoCompraNacional.TrabajadorID);
+            return View(contratoCompraNacional);
         }
 
-        // POST: ContratoVentaInternacional/Edit/5
+        // POST: ContratoCompraNacional/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int ProductoID,int TrabajadorID,int EmpresaID, string FechaPedido, string FechaContrato,[Bind("EmpresaID,TrabajadorID,ProductoID,FechaPedido,FechaContrato,DeUnaParte,DeLaOtraParte,DeAmbasPartes,ObjetoDelContrato,TipoPago,DineroGanadoUSD,CamposOtros")] ContratoVentaInternacional contratoVentaInternacional)
+        public async Task<IActionResult> Edit(int ProductoID,int TrabajadorID,int EmpresaID, string FechaPedido, string FechaContrato, [Bind("EmpresaID,TrabajadorID,ProductoID,FechaPedido,FechaContrato,DeUnaParte,DeLaOtraParte,DeAmbasPartes,ObjetoDelContrato,TipoPago,DineroGanadoUSD,CamposOtros")] ContratoCompraNacional contratoCompraNacional)
         {
-            if (ProductoID != contratoVentaInternacional.ProductoID)
+            if (ProductoID != contratoCompraNacional.ProductoID)
             {
                 return NotFound();
             }
-            if (TrabajadorID != contratoVentaInternacional.TrabajadorID)
+            if (TrabajadorID != contratoCompraNacional.TrabajadorID)
             {
                 return NotFound();
             }
-            if (EmpresaID != contratoVentaInternacional.EmpresaID)
+            if (EmpresaID != contratoCompraNacional.EmpresaID)
             {
                 return NotFound();
             }
             DateTime fechaP = DateTime.Parse(FechaPedido);
-            if (fechaP != contratoVentaInternacional.FechaPedido)
+            if (fechaP != contratoCompraNacional.FechaPedido)
             {
                 return NotFound();
             }
             DateTime fechaC = DateTime.Parse(FechaContrato);
-            if (fechaC != contratoVentaInternacional.FechaContrato)
+            if (fechaC != contratoCompraNacional.FechaContrato)
             {
                 return NotFound();
             }
@@ -133,12 +133,12 @@ namespace CitricosCaribe.Controllers
             {
                 try
                 {
-                    _context.Update(contratoVentaInternacional);
+                    _context.Update(contratoCompraNacional);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ContratoVentaInternacionalExists(contratoVentaInternacional.EmpresaID))
+                    if (!ContratoCompraNacionalExists(contratoCompraNacional.EmpresaID))
                     {
                         return NotFound();
                     }
@@ -149,13 +149,13 @@ namespace CitricosCaribe.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", contratoVentaInternacional.EmpresaID);
-            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", contratoVentaInternacional.ProductoID);
-            ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI", contratoVentaInternacional.TrabajadorID);
-            return View(contratoVentaInternacional);
+            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", contratoCompraNacional.EmpresaID);
+            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", contratoCompraNacional.ProductoID);
+            ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI", contratoCompraNacional.TrabajadorID);
+            return View(contratoCompraNacional);
         }
 
-        // GET: ContratoVentaInternacional/Delete/5
+        // GET: ContratoCompraNacional/Delete/5
         public async Task<IActionResult> Delete(int? ProductoID,int? TrabajadorID,int? EmpresaID, string FechaPedido, string FechaContrato)
         {
             if (ProductoID == null || TrabajadorID == null || EmpresaID == null || FechaPedido == null || FechaContrato == null)
@@ -164,37 +164,37 @@ namespace CitricosCaribe.Controllers
             }
             DateTime fechaP = DateTime.Parse(FechaPedido);
             DateTime fechaC = DateTime.Parse(FechaContrato);
-            var contratoVentaInternacional = await _context.ContratosVentasInternacionales
+            var contratoCompraNacional = await _context.ContratosComprasNacionales
                 .Include(c => c.Empresa)
                 .Include(c => c.Producto)
                 .Include(c => c.Trabajador)
                 .FirstOrDefaultAsync(m => m.EmpresaID == EmpresaID && m.ProductoID==ProductoID 
                 && m.TrabajadorID==TrabajadorID 
                 && m.FechaPedido==fechaP && m.FechaContrato==fechaC );
-            if (contratoVentaInternacional == null)
+            if (contratoCompraNacional == null)
             {
                 return NotFound();
             }
 
-            return View(contratoVentaInternacional);
+            return View(contratoCompraNacional);
         }
 
-        // POST: ContratoVentaInternacional/Delete/5
+        // POST: ContratoCompraNacional/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int ProductoID,int TrabajadorID,int EmpresaID, string FechaPedido, string FechaContrato)
         {
             DateTime fechaP = DateTime.Parse(FechaPedido);
             DateTime fechaC = DateTime.Parse(FechaContrato);
-            var contratoVentaInternacional = await _context.ContratosVentasInternacionales.FindAsync(EmpresaID,TrabajadorID,ProductoID,fechaC,fechaP);
-            _context.ContratosVentasInternacionales.Remove(contratoVentaInternacional);
+            var contratoCompraNacional = await _context.ContratosComprasNacionales.FindAsync(EmpresaID,TrabajadorID,ProductoID,fechaC,fechaP);
+            _context.ContratosComprasNacionales.Remove(contratoCompraNacional);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ContratoVentaInternacionalExists(int id)
+        private bool ContratoCompraNacionalExists(int id)
         {
-            return _context.ContratosVentasInternacionales.Any(e => e.EmpresaID == id);
+            return _context.ContratosComprasNacionales.Any(e => e.EmpresaID == id);
         }
     }
 }
