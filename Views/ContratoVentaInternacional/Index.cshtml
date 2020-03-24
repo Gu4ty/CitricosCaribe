@@ -1,10 +1,10 @@
-@model IEnumerable<CitricosCaribe.Models.ContratoVentaNacional>
+@model IEnumerable<CitricosCaribe.Models.ContratoVentaInternacional>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Contratos de Venta Nacionale</h1>
+<h1>Contratos de Venta Internacional</h1>
 
 <p>
     <a asp-action="Create">Registrar Contrato</a>
@@ -22,7 +22,7 @@
                 @Html.DisplayNameFor(model => model.Producto)
             </th>
             <th>
-                Fecha de Oferta
+                Fecha de Pedido
             </th>
             <th>
                 Fecha de Contrato
@@ -64,7 +64,7 @@
                 <a asp-area="" asp-controller="Producto" asp-action="Details" asp-route-id="@item.ProductoID" >@Html.DisplayFor(modelItem => item.Producto.Nombre)</a>
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.FechaSolicitud)
+                @Html.DisplayFor(modelItem => item.FechaPedido)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaContrato)
@@ -91,9 +91,9 @@
                 @Html.DisplayFor(modelItem => item.CamposOtros)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaSolicitud,item.FechaContrato  }) |
-                @Html.ActionLink("Details", "Details", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaSolicitud,item.FechaContrato  }) |
-                @Html.ActionLink("Delete", "Delete", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaSolicitud,item.FechaContrato  })
+                @Html.ActionLink("Edit", "Edit", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaPedido,item.FechaContrato  }) |
+                @Html.ActionLink("Details", "Details", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaPedido,item.FechaContrato  }) |
+                @Html.ActionLink("Delete", "Delete", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaPedido,item.FechaContrato  })
             </td>
         </tr>
 }

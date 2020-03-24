@@ -73,7 +73,7 @@ namespace CitricosCaribe.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "Discriminator", contratoVentaNacional.EmpresaID);
+            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", contratoVentaNacional.EmpresaID);
             ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", contratoVentaNacional.ProductoID);
             ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI", contratoVentaNacional.TrabajadorID);
             return View(contratoVentaNacional);
@@ -93,7 +93,7 @@ namespace CitricosCaribe.Controllers
             {
                 return NotFound();
             }
-            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "Discriminator", contratoVentaNacional.EmpresaID);
+            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", contratoVentaNacional.EmpresaID);
             ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", contratoVentaNacional.ProductoID);
             ViewData["TrabajadorID"] = new SelectList(_context.Trabajadores, "CI", "CI", contratoVentaNacional.TrabajadorID);
             return View(contratoVentaNacional);
