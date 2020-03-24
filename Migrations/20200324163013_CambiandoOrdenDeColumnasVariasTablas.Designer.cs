@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CitricosCaribe.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200324154313_CambiandoColumnasEnSolicitudTabla")]
-    partial class CambiandoColumnasEnSolicitudTabla
+    [Migration("20200324163013_CambiandoOrdenDeColumnasVariasTablas")]
+    partial class CambiandoOrdenDeColumnasVariasTablas
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

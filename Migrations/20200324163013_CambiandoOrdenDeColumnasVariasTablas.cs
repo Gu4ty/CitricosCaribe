@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CitricosCaribe.Migrations
 {
-    public partial class CambiandoColumnasEnSolicitudTabla : Migration
+    public partial class CambiandoOrdenDeColumnasVariasTablas : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -177,9 +177,9 @@ namespace CitricosCaribe.Migrations
                 name: "Ofertas",
                 columns: table => new
                 {
-                    FechaOferta = table.Column<DateTime>(nullable: false),
                     EmpresaID = table.Column<int>(nullable: false),
                     ProductoID = table.Column<int>(nullable: false),
+                    FechaOferta = table.Column<DateTime>(nullable: false),
                     Origen = table.Column<string>(nullable: true),
                     Cantidad = table.Column<int>(nullable: false),
                     PuertoOrigen = table.Column<string>(nullable: true),
@@ -207,9 +207,9 @@ namespace CitricosCaribe.Migrations
                 name: "Pedidos",
                 columns: table => new
                 {
-                    FechaOferta = table.Column<DateTime>(nullable: false),
                     EmpresaID = table.Column<int>(nullable: false),
                     ProductoID = table.Column<int>(nullable: false),
+                    FechaOferta = table.Column<DateTime>(nullable: false),
                     TipoDeDivisas = table.Column<string>(nullable: true),
                     Presupuesto = table.Column<double>(nullable: false),
                     Cantidad = table.Column<int>(nullable: false),
@@ -264,18 +264,18 @@ namespace CitricosCaribe.Migrations
                 name: "ContratosComprasInternacionales",
                 columns: table => new
                 {
-                    FechaContrato = table.Column<DateTime>(nullable: false),
-                    FechaOferta = table.Column<DateTime>(nullable: false),
-                    TrabajadorID = table.Column<int>(nullable: false),
                     EmpresaID = table.Column<int>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false),
                     ProductoID = table.Column<int>(nullable: false),
-                    CamposOtros = table.Column<string>(nullable: true),
-                    DineroGanadoUSD = table.Column<double>(nullable: false),
-                    DeAmbasPartes = table.Column<string>(nullable: true),
-                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    FechaOferta = table.Column<DateTime>(nullable: false),
+                    FechaContrato = table.Column<DateTime>(nullable: false),
                     DeUnaParte = table.Column<string>(nullable: true),
+                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    DeAmbasPartes = table.Column<string>(nullable: true),
+                    ObjetoDelContrato = table.Column<string>(nullable: true),
                     TipoPago = table.Column<string>(nullable: true),
-                    ObjetoDelContrato = table.Column<string>(nullable: true)
+                    DineroGanadoUSD = table.Column<double>(nullable: false),
+                    CamposOtros = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -304,18 +304,18 @@ namespace CitricosCaribe.Migrations
                 name: "ContratosComprasNacionales",
                 columns: table => new
                 {
-                    FechaContrato = table.Column<DateTime>(nullable: false),
-                    FechaPedido = table.Column<DateTime>(nullable: false),
-                    TrabajadorID = table.Column<int>(nullable: false),
                     EmpresaID = table.Column<int>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false),
                     ProductoID = table.Column<int>(nullable: false),
-                    CamposOtros = table.Column<string>(nullable: true),
-                    DineroGanadoUSD = table.Column<double>(nullable: false),
-                    DeAmbasPartes = table.Column<string>(nullable: true),
-                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    FechaPedido = table.Column<DateTime>(nullable: false),
+                    FechaContrato = table.Column<DateTime>(nullable: false),
                     DeUnaParte = table.Column<string>(nullable: true),
+                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    DeAmbasPartes = table.Column<string>(nullable: true),
+                    ObjetoDelContrato = table.Column<string>(nullable: true),
                     TipoPago = table.Column<string>(nullable: true),
-                    ObjetoDelContrato = table.Column<string>(nullable: true)
+                    DineroGanadoUSD = table.Column<double>(nullable: false),
+                    CamposOtros = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -344,18 +344,18 @@ namespace CitricosCaribe.Migrations
                 name: "ContratosVentasInternacionales",
                 columns: table => new
                 {
-                    FechaContrato = table.Column<DateTime>(nullable: false),
-                    FechaPedido = table.Column<DateTime>(nullable: false),
-                    TrabajadorID = table.Column<int>(nullable: false),
                     EmpresaID = table.Column<int>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false),
                     ProductoID = table.Column<int>(nullable: false),
-                    CamposOtros = table.Column<string>(nullable: true),
-                    DineroGanadoUSD = table.Column<double>(nullable: false),
-                    DeAmbasPartes = table.Column<string>(nullable: true),
-                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    FechaPedido = table.Column<DateTime>(nullable: false),
+                    FechaContrato = table.Column<DateTime>(nullable: false),
                     DeUnaParte = table.Column<string>(nullable: true),
+                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    DeAmbasPartes = table.Column<string>(nullable: true),
+                    ObjetoDelContrato = table.Column<string>(nullable: true),
                     TipoPago = table.Column<string>(nullable: true),
-                    ObjetoDelContrato = table.Column<string>(nullable: true)
+                    DineroGanadoUSD = table.Column<double>(nullable: false),
+                    CamposOtros = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -384,18 +384,18 @@ namespace CitricosCaribe.Migrations
                 name: "ContratosVentasNacionales",
                 columns: table => new
                 {
-                    FechaContrato = table.Column<DateTime>(nullable: false),
-                    FechaSolicitud = table.Column<DateTime>(nullable: false),
-                    TrabajadorID = table.Column<int>(nullable: false),
                     EmpresaID = table.Column<int>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false),
                     ProductoID = table.Column<int>(nullable: false),
-                    CamposOtros = table.Column<string>(nullable: true),
-                    DineroGanadoUSD = table.Column<double>(nullable: false),
-                    DeAmbasPartes = table.Column<string>(nullable: true),
-                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    FechaSolicitud = table.Column<DateTime>(nullable: false),
+                    FechaContrato = table.Column<DateTime>(nullable: false),
                     DeUnaParte = table.Column<string>(nullable: true),
+                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    DeAmbasPartes = table.Column<string>(nullable: true),
+                    ObjetoDelContrato = table.Column<string>(nullable: true),
                     TipoPago = table.Column<string>(nullable: true),
-                    ObjetoDelContrato = table.Column<string>(nullable: true)
+                    DineroGanadoUSD = table.Column<double>(nullable: false),
+                    CamposOtros = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {

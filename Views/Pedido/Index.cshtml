@@ -1,13 +1,13 @@
-@model IEnumerable<CitricosCaribe.Models.Solicitud>
+@model IEnumerable<CitricosCaribe.Models.Pedido>
 
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Solicitudes</h1>
+<h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Registrar Solicitud</a>
+    <a asp-action="Create">Create New</a>
 </p>
 <table class="table">
     <thead>
@@ -19,13 +19,16 @@
                 @Html.DisplayNameFor(model => model.Producto)
             </th>
             <th>
-                Fecha de Solicitud
+                Fecha de Pedido
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Cantidad)
+                @Html.DisplayNameFor(model => model.TipoDeDivisas)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Presupuesto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Calidad)
@@ -37,29 +40,30 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                
                 <a asp-area="" asp-controller="Empresa" asp-action="Details" asp-route-id="@item.EmpresaID" >@Html.DisplayFor(modelItem => item.Empresa.Name)</a>
             </td>
             <td>
                 <a asp-area="" asp-controller="Producto" asp-action="Details" asp-route-id="@item.ProductoID" >@Html.DisplayFor(modelItem => item.Producto.Nombre)</a>
-                
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FechaOferta)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Cantidad)
+                @Html.DisplayFor(modelItem => item.TipoDeDivisas)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Presupuesto)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Calidad)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new {item.EmpresaID,item.ProductoID,item.FechaOferta}) |
-                @Html.ActionLink("Details", "Details", new { item.EmpresaID,item.ProductoID,item.FechaOferta}) |
-                @Html.ActionLink("Delete", "Delete", new { item.EmpresaID,item.ProductoID,item.FechaOferta })
+                @Html.ActionLink("Edit", "Edit", new { item.EmpresaID,item.ProductoID,item.FechaOferta}) |
+                @Html.ActionLink("Details", "Details", new { item.EmpresaID,item.ProductoID,item.FechaOferta }) |
+                @Html.ActionLink("Delete", "Delete", new { item.EmpresaID,item.ProductoID,item.FechaOferta})
             </td>
         </tr>
 }
