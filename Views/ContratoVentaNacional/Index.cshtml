@@ -1,0 +1,101 @@
+@model IEnumerable<CitricosCaribe.Models.ContratoVentaNacional>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Trabajador)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                Fecha de Oferta
+            </th>
+            <th>
+                Fecha de Contrato
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeUnaParte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeLaOtraParte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DeAmbasPartes)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ObjetoDelContrato)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TipoPago)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DineroGanadoUSD)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CamposOtros)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+               <a asp-area="" asp-controller="Empresa" asp-action="Details" asp-route-id="@item.EmpresaID" >@Html.DisplayFor(modelItem => item.Empresa.Name)</a>
+            </td>
+            <td>
+                <a asp-area="" asp-controller="Trabajador" asp-action="Details" asp-route-id="@item.TrabajadorID" >@Html.DisplayFor(modelItem => item.Trabajador.Nombre)</a>
+            </td>
+            <td>
+                <a asp-area="" asp-controller="Producto" asp-action="Details" asp-route-id="@item.ProductoID" >@Html.DisplayFor(modelItem => item.Producto.Nombre)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaSolicitud)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaContrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeUnaParte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeLaOtraParte)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DeAmbasPartes)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ObjetoDelContrato)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoPago)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DineroGanadoUSD)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CamposOtros)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaSolicitud,item.FechaContrato  }) |
+                @Html.ActionLink("Details", "Details", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaSolicitud,item.FechaContrato  }) |
+                @Html.ActionLink("Delete", "Delete", new { item.ProductoID,item.TrabajadorID,item.EmpresaID,item.FechaSolicitud,item.FechaContrato  })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
