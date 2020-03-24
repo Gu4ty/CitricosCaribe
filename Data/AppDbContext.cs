@@ -124,6 +124,8 @@ namespace CitricosCaribe.Data
                 .WithMany(e => e.Solicitudes)
                 .HasForeignKey(s => s.EmpresaID);
             
+            
+
             modelBuilder.Entity<Pedido>()
                 .HasKey(s => new{s.ProductoID,s.EmpresaID,s.FechaOferta});
             modelBuilder.Entity<Pedido>()

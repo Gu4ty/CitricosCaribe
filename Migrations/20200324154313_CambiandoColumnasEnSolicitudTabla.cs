@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CitricosCaribe.Migrations
 {
-    public partial class TipoDireccionBaseTransporteLLavePrimaria : Migration
+    public partial class CambiandoColumnasEnSolicitudTabla : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -236,11 +236,11 @@ namespace CitricosCaribe.Migrations
                 name: "Solicitudes",
                 columns: table => new
                 {
-                    FechaOferta = table.Column<DateTime>(nullable: false),
                     EmpresaID = table.Column<int>(nullable: false),
                     ProductoID = table.Column<int>(nullable: false),
-                    Presupuesto = table.Column<double>(nullable: false),
+                    FechaOferta = table.Column<DateTime>(nullable: false),
                     Cantidad = table.Column<int>(nullable: false),
+                    Presupuesto = table.Column<double>(nullable: false),
                     Calidad = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
