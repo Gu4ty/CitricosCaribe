@@ -10,23 +10,23 @@ using CitricosCaribe.Models;
 
 namespace CitricosCaribe.Controllers
 {
-    public class PedidoController : Controller
+    public class OfertaController : Controller
     {
         private readonly AppDbContext _context;
 
-        public PedidoController(AppDbContext context)
+        public OfertaController(AppDbContext context)
         {
             _context = context;
         }
 
-        // GET: Pedido
+        // GET: Oferta
         public async Task<IActionResult> Index()
         {
-            var appDbContext = _context.Pedidos.Include(p => p.Empresa).Include(p => p.Producto);
+            var appDbContext = _context.Ofertas.Include(o => o.Empresa).Include(o => o.Producto);
             return View(await appDbContext.ToListAsync());
         }
 
-        // GET: Pedido/Details/5
+        // GET: Oferta/Details/5
         public async Task<IActionResult> Details(int? EmpresaID,int? ProductoID, string FechaOferta)
         {
             if (EmpresaID == null || ProductoID ==null || FechaOferta==null)
@@ -34,19 +34,19 @@ namespace CitricosCaribe.Controllers
                 return NotFound();
             }
             DateTime Fecha = DateTime.Parse(FechaOferta);
-            var pedido = await _context.Pedidos
-                .Include(p => p.Empresa)
-                .Include(p => p.Producto)
+            var oferta = await _context.Ofertas
+                .Include(o => o.Empresa)
+                .Include(o => o.Producto)
                 .FirstOrDefaultAsync(m => m.ProductoID == ProductoID && m.EmpresaID==EmpresaID && m.FechaOferta==Fecha);
-            if (pedido == null)
+            if (oferta == null)
             {
                 return NotFound();
             }
 
-            return View(pedido);
+            return View(oferta);
         }
 
-        // GET: Pedido/Create
+        // GET: Oferta/Create
         public IActionResult Create()
         {
             ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID");
@@ -54,72 +54,73 @@ namespace CitricosCaribe.Controllers
             return View();
         }
 
-        // POST: Pedido/Create
+        // POST: Oferta/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("EmpresaID,ProductoID,FechaOferta,TipoDeDivisas,Presupuesto,Cantidad,Calidad")] Pedido pedido)
+        public async Task<IActionResult> Create([Bind("EmpresaID,ProductoID,FechaOferta,Origen,Cantidad,PuertoOrigen,PuertoDestino,Calidad")] Oferta oferta)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(pedido);
+                _context.Add(oferta);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", pedido.EmpresaID);
-            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", pedido.ProductoID);
-            return View(pedido);
+            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "Discriminator", oferta.EmpresaID);
+            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", oferta.ProductoID);
+            return View(oferta);
         }
 
-        // GET: Pedido/Edit/5
+        // GET: Oferta/Edit/5
         public async Task<IActionResult> Edit(int? EmpresaID,int? ProductoID, string FechaOferta)
         {
             if (EmpresaID == null || ProductoID ==null || FechaOferta==null)
             {
                 return NotFound();
             }
-            DateTime fecha = DateTime.Parse(FechaOferta);
-            var pedido = await _context.Pedidos.FindAsync(ProductoID,EmpresaID,fecha);
-            if (pedido == null)
+              DateTime fecha = DateTime.Parse(FechaOferta);
+            var oferta = await _context.Ofertas.FindAsync(ProductoID,EmpresaID,fecha);
+            if (oferta == null)
             {
                 return NotFound();
             }
-            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "Discriminator", pedido.EmpresaID);
-            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", pedido.ProductoID);
-            return View(pedido);
+            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "Discriminator", oferta.EmpresaID);
+            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", oferta.ProductoID);
+            return View(oferta);
         }
 
-        // POST: Pedido/Edit/5
+        // POST: Oferta/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int EmpresaID,int ProductoID,string FechaOferta,[Bind("EmpresaID,ProductoID,FechaOferta,TipoDeDivisas,Presupuesto,Cantidad,Calidad")] Pedido pedido)
+        public async Task<IActionResult> Edit(int EmpresaID,int ProductoID,string FechaOferta, [Bind("EmpresaID,ProductoID,FechaOferta,Origen,Cantidad,PuertoOrigen,PuertoDestino,Calidad")] Oferta oferta)
         {
-            if (ProductoID != pedido.ProductoID)
+            if (ProductoID != oferta.ProductoID)
             {
                 return NotFound();
             }
-            if (EmpresaID != pedido.EmpresaID)
+            if (EmpresaID != oferta.EmpresaID)
             {
                 return NotFound();
             }
             DateTime fecha = DateTime.Parse(FechaOferta);
-            if (fecha != pedido.FechaOferta)
+            if (fecha != oferta.FechaOferta)
             {
                 return NotFound();
             }
+
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(pedido);
+                    _context.Update(oferta);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!PedidoExists(pedido.ProductoID))
+                    if (!OfertaExists(oferta.ProductoID))
                     {
                         return NotFound();
                     }
@@ -130,12 +131,12 @@ namespace CitricosCaribe.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", pedido.EmpresaID);
-            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", pedido.ProductoID);
-            return View(pedido);
+            ViewData["EmpresaID"] = new SelectList(_context.Empresas, "ID", "ID", oferta.EmpresaID);
+            ViewData["ProductoID"] = new SelectList(_context.Productos, "ID", "Nombre", oferta.ProductoID);
+            return View(oferta);
         }
 
-        // GET: Pedido/Delete/5
+        // GET: Oferta/Delete/5
         public async Task<IActionResult> Delete(int? EmpresaID,int? ProductoID, string FechaOferta)
         {
             if (EmpresaID == null || ProductoID ==null || FechaOferta==null)
@@ -143,33 +144,33 @@ namespace CitricosCaribe.Controllers
                 return NotFound();
             }
             DateTime Fecha = DateTime.Parse(FechaOferta);
-            var pedido = await _context.Pedidos
-                .Include(p => p.Empresa)
-                .Include(p => p.Producto)
+            var oferta = await _context.Ofertas
+                .Include(o => o.Empresa)
+                .Include(o => o.Producto)
                 .FirstOrDefaultAsync(m => m.ProductoID == ProductoID && m.EmpresaID==EmpresaID && m.FechaOferta==Fecha);
-            if (pedido == null)
+            if (oferta == null)
             {
                 return NotFound();
             }
 
-            return View(pedido);
+            return View(oferta);
         }
 
-        // POST: Pedido/Delete/5
+        // POST: Oferta/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int EmpresaID,int ProductoID,string FechaOferta)
         {
             DateTime Fecha = DateTime.Parse(FechaOferta);
-            var pedido = await _context.Pedidos.FindAsync(ProductoID,EmpresaID,Fecha);
-            _context.Pedidos.Remove(pedido);
+            var oferta = await _context.Ofertas.FindAsync(ProductoID,EmpresaID,Fecha);
+            _context.Ofertas.Remove(oferta);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool PedidoExists(int id)
+        private bool OfertaExists(int id)
         {
-            return _context.Pedidos.Any(e => e.ProductoID == id);
+            return _context.Ofertas.Any(e => e.ProductoID == id);
         }
     }
 }

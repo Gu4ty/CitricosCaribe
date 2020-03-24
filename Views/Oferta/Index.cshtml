@@ -1,0 +1,77 @@
+@model IEnumerable<CitricosCaribe.Models.Oferta>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ofertas</h1>
+
+<p>
+    <a asp-action="Create">Registrar Oferta</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Empresa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Producto)
+            </th>
+            <th>
+                Fecha de Oferta
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Origen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PuertoOrigen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PuertoDestino)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Calidad)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-area="" asp-controller="Empresa" asp-action="Details" asp-route-id="@item.EmpresaID" >@Html.DisplayFor(modelItem => item.Empresa.Name)</a>
+            </td>
+            <td>
+                <a asp-area="" asp-controller="Producto" asp-action="Details" asp-route-id="@item.ProductoID" >@Html.DisplayFor(modelItem => item.Producto.Nombre)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FechaOferta)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Origen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PuertoOrigen)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PuertoDestino)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calidad)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { item.EmpresaID,item.ProductoID,item.FechaOferta }) |
+                @Html.ActionLink("Details", "Details", new { item.EmpresaID,item.ProductoID,item.FechaOferta }) |
+                @Html.ActionLink("Delete", "Delete", new { item.EmpresaID,item.ProductoID,item.FechaOferta })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
