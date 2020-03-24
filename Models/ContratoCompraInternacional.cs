@@ -18,6 +18,7 @@ namespace CitricosCaribe.Models
         [DataType(DataType.Date)]  
         public int ProductoID { get; set; }
         public Producto Producto { get; set; }
+        [DataType(DataType.Date)]  
         public DateTime FechaOferta { get; set; }
         [DataType(DataType.Date)]  
         public DateTime FechaContrato { get; set; }
