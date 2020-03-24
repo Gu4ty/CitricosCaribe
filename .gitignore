@@ -2,3 +2,4 @@ AppDb.db
 .vscode
 /bin
 /obj
+/wwwroot
