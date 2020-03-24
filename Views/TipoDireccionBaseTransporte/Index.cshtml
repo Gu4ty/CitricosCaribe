@@ -1,0 +1,41 @@
+@model IEnumerable<CitricosCaribe.Models.TipoDireccionBaseTransporte>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.BaseTransporte)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Direccion)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.BaseTransporte.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion.ID)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.BaseTransporteID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.BaseTransporteID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.BaseTransporteID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

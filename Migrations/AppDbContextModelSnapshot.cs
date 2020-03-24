@@ -426,10 +426,7 @@ namespace CitricosCaribe.Migrations
                     b.Property<int>("DireccionID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("BaseTransporteID", "DireccionID");
-
-                    b.HasIndex("BaseTransporteID")
-                        .IsUnique();
+                    b.HasKey("BaseTransporteID");
 
                     b.HasIndex("DireccionID");
 

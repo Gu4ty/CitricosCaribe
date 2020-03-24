@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CitricosCaribe.Migrations
 {
-    public partial class TipoDireccionTrabajadorLLavePrimaria : Migration
+    public partial class TipoDireccionBaseTransporteLLavePrimaria : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -134,7 +134,7 @@ namespace CitricosCaribe.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoDireccionBaseTransportes", x => new { x.BaseTransporteID, x.DireccionID });
+                    table.PrimaryKey("PK_TipoDireccionBaseTransportes", x => x.BaseTransporteID);
                     table.ForeignKey(
                         name: "FK_TipoDireccionBaseTransportes_BasesTransportes_BaseTransporteID",
                         column: x => x.BaseTransporteID,
@@ -552,12 +552,6 @@ namespace CitricosCaribe.Migrations
                 name: "IX_Solicitudes_EmpresaID",
                 table: "Solicitudes",
                 column: "EmpresaID");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_TipoDireccionBaseTransportes_BaseTransporteID",
-                table: "TipoDireccionBaseTransportes",
-                column: "BaseTransporteID",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_TipoDireccionBaseTransportes_DireccionID",

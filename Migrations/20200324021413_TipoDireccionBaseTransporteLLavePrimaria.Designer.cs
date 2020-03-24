@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CitricosCaribe.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200324020633_TipoDireccionTrabajadorLLavePrimaria")]
-    partial class TipoDireccionTrabajadorLLavePrimaria
+    [Migration("20200324021413_TipoDireccionBaseTransporteLLavePrimaria")]
+    partial class TipoDireccionBaseTransporteLLavePrimaria
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -428,10 +428,7 @@ namespace CitricosCaribe.Migrations
                     b.Property<int>("DireccionID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("BaseTransporteID", "DireccionID");
-
-                    b.HasIndex("BaseTransporteID")
-                        .IsUnique();
+                    b.HasKey("BaseTransporteID");
 
                     b.HasIndex("DireccionID");
 
