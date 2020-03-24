@@ -36,6 +36,12 @@ namespace CitricosCaribe.Controllers
             var empresaNacional = await _context.EmpresasNacionales
                 .Include(e => e.Pedidos)
                     .ThenInclude(p => p.Producto)
+                .Include(e => e.Ofertas)
+                    .ThenInclude(p => p.Producto)    
+                .Include(p=> p.ContratoVentaNacionales)
+                    .ThenInclude(c => c.Producto)  
+                .Include(p=> p.ContratoCompraNacionales)
+                    .ThenInclude(c => c.Producto)           
                 .AsNoTracking()
                 .FirstOrDefaultAsync(m => m.ID == id);
                 
