@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CitricosCaribe.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20200316190946_AddOfertasTabla")]
-    partial class AddOfertasTabla
+    [Migration("20200324020633_TipoDireccionTrabajadorLLavePrimaria")]
+    partial class TipoDireccionTrabajadorLLavePrimaria
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -33,6 +33,194 @@ namespace CitricosCaribe.Migrations
                     b.HasKey("ID");
 
                     b.ToTable("BasesTransportes");
+                });
+
+            modelBuilder.Entity("CitricosCaribe.Models.ContratoCompraInternacional", b =>
+                {
+                    b.Property<int>("EmpresaID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TrabajadorID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductoID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaContrato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaOferta")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CamposOtros")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeAmbasPartes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeLaOtraParte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeUnaParte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("DineroGanadoUSD")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("ObjetoDelContrato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TipoPago")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("EmpresaID", "TrabajadorID", "ProductoID", "FechaContrato", "FechaOferta");
+
+                    b.HasIndex("ProductoID");
+
+                    b.HasIndex("TrabajadorID");
+
+                    b.ToTable("ContratosComprasInternacionales");
+                });
+
+            modelBuilder.Entity("CitricosCaribe.Models.ContratoCompraNacional", b =>
+                {
+                    b.Property<int>("EmpresaID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TrabajadorID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductoID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaContrato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaPedido")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CamposOtros")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeAmbasPartes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeLaOtraParte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeUnaParte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("DineroGanadoUSD")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("ObjetoDelContrato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TipoPago")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("EmpresaID", "TrabajadorID", "ProductoID", "FechaContrato", "FechaPedido");
+
+                    b.HasIndex("ProductoID");
+
+                    b.HasIndex("TrabajadorID");
+
+                    b.ToTable("ContratosComprasNacionales");
+                });
+
+            modelBuilder.Entity("CitricosCaribe.Models.ContratoVentaInternacional", b =>
+                {
+                    b.Property<int>("EmpresaID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TrabajadorID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductoID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaContrato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaPedido")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CamposOtros")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeAmbasPartes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeLaOtraParte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeUnaParte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("DineroGanadoUSD")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("ObjetoDelContrato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TipoPago")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("EmpresaID", "TrabajadorID", "ProductoID", "FechaContrato", "FechaPedido");
+
+                    b.HasIndex("ProductoID");
+
+                    b.HasIndex("TrabajadorID");
+
+                    b.ToTable("ContratosVentasInternacionales");
+                });
+
+            modelBuilder.Entity("CitricosCaribe.Models.ContratoVentaNacional", b =>
+                {
+                    b.Property<int>("EmpresaID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("TrabajadorID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ProductoID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("FechaContrato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("FechaSolicitud")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CamposOtros")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeAmbasPartes")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeLaOtraParte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("DeUnaParte")
+                        .HasColumnType("TEXT");
+
+                    b.Property<double>("DineroGanadoUSD")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("ObjetoDelContrato")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("TipoPago")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("EmpresaID", "TrabajadorID", "ProductoID", "FechaContrato", "FechaSolicitud");
+
+                    b.HasIndex("ProductoID");
+
+                    b.HasIndex("TrabajadorID");
+
+                    b.ToTable("ContratosVentasNacionales");
                 });
 
             modelBuilder.Entity("CitricosCaribe.Models.Direccion", b =>
@@ -194,6 +382,7 @@ namespace CitricosCaribe.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Nombre")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("UnidadDeMedida")
@@ -266,16 +455,15 @@ namespace CitricosCaribe.Migrations
 
             modelBuilder.Entity("CitricosCaribe.Models.TipoDireccionTrabajador", b =>
                 {
-                    b.Property<int>("DireccionID")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("TrabajadorID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("DireccionID", "TrabajadorID");
+                    b.Property<int>("DireccionID")
+                        .HasColumnType("INTEGER");
 
-                    b.HasIndex("TrabajadorID")
-                        .IsUnique();
+                    b.HasKey("TrabajadorID");
+
+                    b.HasIndex("DireccionID");
 
                     b.ToTable("TipoDireccionTrabajadores");
                 });
@@ -360,6 +548,90 @@ namespace CitricosCaribe.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasDiscriminator().HasValue("EmpresaNacional");
+                });
+
+            modelBuilder.Entity("CitricosCaribe.Models.ContratoCompraInternacional", b =>
+                {
+                    b.HasOne("CitricosCaribe.Models.Empresa", "Empresa")
+                        .WithMany("ContratoCompraInternacionales")
+                        .HasForeignKey("EmpresaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CitricosCaribe.Models.Producto", "Producto")
+                        .WithMany("ContratoCompraInternacionales")
+                        .HasForeignKey("ProductoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CitricosCaribe.Models.Trabajador", "Trabajador")
+                        .WithMany("ContratoCompraInternacionales")
+                        .HasForeignKey("TrabajadorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CitricosCaribe.Models.ContratoCompraNacional", b =>
+                {
+                    b.HasOne("CitricosCaribe.Models.Empresa", "Empresa")
+                        .WithMany("ContratoCompraNacionales")
+                        .HasForeignKey("EmpresaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CitricosCaribe.Models.Producto", "Producto")
+                        .WithMany("ContratoCompraNacionales")
+                        .HasForeignKey("ProductoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CitricosCaribe.Models.Trabajador", "Trabajador")
+                        .WithMany("ContratoCompraNacionales")
+                        .HasForeignKey("TrabajadorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CitricosCaribe.Models.ContratoVentaInternacional", b =>
+                {
+                    b.HasOne("CitricosCaribe.Models.Empresa", "Empresa")
+                        .WithMany("ContratoVentaInternacionales")
+                        .HasForeignKey("EmpresaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CitricosCaribe.Models.Producto", "Producto")
+                        .WithMany("ContratoVentaInternacionales")
+                        .HasForeignKey("ProductoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CitricosCaribe.Models.Trabajador", "Trabajador")
+                        .WithMany("ContratoVentaInternacionales")
+                        .HasForeignKey("TrabajadorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CitricosCaribe.Models.ContratoVentaNacional", b =>
+                {
+                    b.HasOne("CitricosCaribe.Models.Empresa", "Empresa")
+                        .WithMany("ContratoVentaNacionales")
+                        .HasForeignKey("EmpresaID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CitricosCaribe.Models.Producto", "Producto")
+                        .WithMany("ContratoVentaNacionales")
+                        .HasForeignKey("ProductoID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("CitricosCaribe.Models.Trabajador", "Trabajador")
+                        .WithMany("ContratoVentaNacionales")
+                        .HasForeignKey("TrabajadorID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("CitricosCaribe.Models.MedioAsignado", b =>

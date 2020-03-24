@@ -78,7 +78,7 @@ namespace CitricosCaribe.Data
                 .HasForeignKey(m => m.TrabajadorID);
 
             modelBuilder.Entity<TipoDireccionTrabajador>()
-                .HasKey(t => new{t.DireccionID,t.TrabajadorID});
+                .HasKey(t => t.TrabajadorID);
             modelBuilder.Entity<TipoDireccionTrabajador>()
                 .HasOne(t => t.Direccion)
                 .WithMany(d => d.TipoDireccionTrabajador)

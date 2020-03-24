@@ -3,81 +3,18 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CitricosCaribe.Migrations
 {
-    public partial class ReturnTo0 : Migration
+    public partial class TipoDireccionTrabajadorLLavePrimaria : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.DropTable(
-                name: "ContratosComprasInternacionales");
-
-            migrationBuilder.DropTable(
-                name: "ContratosComprasNacionales");
-
-            migrationBuilder.DropTable(
-                name: "ContratosVentasInternacionales");
-
-            migrationBuilder.DropTable(
-                name: "ContratosVentasNacionales");
-
-            migrationBuilder.DropTable(
-                name: "MediosAsignados");
-
-            migrationBuilder.DropTable(
-                name: "Ofertas");
-
-            migrationBuilder.DropTable(
-                name: "Pedidos");
-
-            migrationBuilder.DropTable(
-                name: "Solicitudes");
-
-            migrationBuilder.DropTable(
-                name: "TipoDireccionBaseTransportes");
-
-            migrationBuilder.DropTable(
-                name: "TipoDireccionFrigorificos");
-
-            migrationBuilder.DropTable(
-                name: "TipoDireccionTrabajadores");
-
-            migrationBuilder.DropTable(
-                name: "VehiculosAsignados");
-
-            migrationBuilder.DropTable(
-                name: "Medios");
-
-            migrationBuilder.DropTable(
-                name: "Empresas");
-
-            migrationBuilder.DropTable(
-                name: "Productos");
-
-            migrationBuilder.DropTable(
-                name: "BasesTransportes");
-
-            migrationBuilder.DropTable(
-                name: "Frigorificos");
-
-            migrationBuilder.DropTable(
-                name: "Direcciones");
-
-            migrationBuilder.DropTable(
-                name: "Trabajadores");
-
-            migrationBuilder.DropTable(
-                name: "Vehiculos");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
                 name: "BasesTransportes",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Direccion = table.Column<string>(type: "TEXT", nullable: true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(nullable: true),
+                    Direccion = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -88,9 +25,9 @@ namespace CitricosCaribe.Migrations
                 name: "Direcciones",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Tipo = table.Column<string>(type: "TEXT", nullable: true)
+                    Tipo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -101,12 +38,12 @@ namespace CitricosCaribe.Migrations
                 name: "Empresas",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Discriminator = table.Column<string>(type: "TEXT", nullable: false),
-                    Name = table.Column<string>(type: "TEXT", nullable: true),
-                    Pais = table.Column<string>(type: "TEXT", nullable: true),
-                    Provincia = table.Column<string>(type: "TEXT", nullable: true)
+                    Name = table.Column<string>(nullable: true),
+                    Discriminator = table.Column<string>(nullable: false),
+                    Pais = table.Column<string>(nullable: true),
+                    Provincia = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -117,10 +54,10 @@ namespace CitricosCaribe.Migrations
                 name: "Frigorificos",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Direccion = table.Column<string>(type: "TEXT", nullable: true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(nullable: true),
+                    Direccion = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -131,9 +68,9 @@ namespace CitricosCaribe.Migrations
                 name: "Medios",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -144,12 +81,12 @@ namespace CitricosCaribe.Migrations
                 name: "Productos",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CaracteristicasTecnicas = table.Column<string>(type: "TEXT", nullable: true),
-                    Descripcion = table.Column<string>(type: "TEXT", nullable: true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
-                    UnidadDeMedida = table.Column<string>(type: "TEXT", nullable: true)
+                    Nombre = table.Column<string>(nullable: false),
+                    Descripcion = table.Column<string>(nullable: true),
+                    CaracteristicasTecnicas = table.Column<string>(nullable: true),
+                    UnidadDeMedida = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -160,13 +97,13 @@ namespace CitricosCaribe.Migrations
                 name: "Trabajadores",
                 columns: table => new
                 {
-                    CI = table.Column<int>(type: "INTEGER", nullable: false)
+                    CI = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Cargo = table.Column<string>(type: "TEXT", nullable: true),
-                    Departamento = table.Column<string>(type: "TEXT", nullable: true),
-                    GradoEscolar = table.Column<string>(type: "TEXT", nullable: true),
-                    Nombre = table.Column<string>(type: "TEXT", nullable: true),
-                    Sueldo = table.Column<double>(type: "REAL", nullable: false)
+                    Nombre = table.Column<string>(nullable: true),
+                    Departamento = table.Column<string>(nullable: true),
+                    Cargo = table.Column<string>(nullable: true),
+                    GradoEscolar = table.Column<string>(nullable: true),
+                    Sueldo = table.Column<double>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -177,11 +114,11 @@ namespace CitricosCaribe.Migrations
                 name: "Vehiculos",
                 columns: table => new
                 {
-                    ID = table.Column<int>(type: "INTEGER", nullable: false)
+                    ID = table.Column<int>(nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Marca = table.Column<string>(type: "TEXT", nullable: true),
-                    Modelo = table.Column<string>(type: "TEXT", nullable: true),
-                    Motor = table.Column<string>(type: "TEXT", nullable: true)
+                    Motor = table.Column<string>(nullable: true),
+                    Marca = table.Column<string>(nullable: true),
+                    Modelo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -192,8 +129,8 @@ namespace CitricosCaribe.Migrations
                 name: "TipoDireccionBaseTransportes",
                 columns: table => new
                 {
-                    BaseTransporteID = table.Column<int>(type: "INTEGER", nullable: false),
-                    DireccionID = table.Column<int>(type: "INTEGER", nullable: false)
+                    BaseTransporteID = table.Column<int>(nullable: false),
+                    DireccionID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -216,8 +153,8 @@ namespace CitricosCaribe.Migrations
                 name: "TipoDireccionFrigorificos",
                 columns: table => new
                 {
-                    FrigorificoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    DireccionID = table.Column<int>(type: "INTEGER", nullable: false)
+                    FrigorificoID = table.Column<int>(nullable: false),
+                    DireccionID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -240,14 +177,14 @@ namespace CitricosCaribe.Migrations
                 name: "Ofertas",
                 columns: table => new
                 {
-                    ProductoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    EmpresaID = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaOferta = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Calidad = table.Column<string>(type: "TEXT", nullable: true),
-                    Cantidad = table.Column<int>(type: "INTEGER", nullable: false),
-                    Origen = table.Column<string>(type: "TEXT", nullable: true),
-                    PuertoDestino = table.Column<string>(type: "TEXT", nullable: true),
-                    PuertoOrigen = table.Column<string>(type: "TEXT", nullable: true)
+                    FechaOferta = table.Column<DateTime>(nullable: false),
+                    EmpresaID = table.Column<int>(nullable: false),
+                    ProductoID = table.Column<int>(nullable: false),
+                    Origen = table.Column<string>(nullable: true),
+                    Cantidad = table.Column<int>(nullable: false),
+                    PuertoOrigen = table.Column<string>(nullable: true),
+                    PuertoDestino = table.Column<string>(nullable: true),
+                    Calidad = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -270,13 +207,13 @@ namespace CitricosCaribe.Migrations
                 name: "Pedidos",
                 columns: table => new
                 {
-                    ProductoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    EmpresaID = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaOferta = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Calidad = table.Column<string>(type: "TEXT", nullable: true),
-                    Cantidad = table.Column<int>(type: "INTEGER", nullable: false),
-                    Presupuesto = table.Column<double>(type: "REAL", nullable: false),
-                    TipoDeDivisas = table.Column<string>(type: "TEXT", nullable: true)
+                    FechaOferta = table.Column<DateTime>(nullable: false),
+                    EmpresaID = table.Column<int>(nullable: false),
+                    ProductoID = table.Column<int>(nullable: false),
+                    TipoDeDivisas = table.Column<string>(nullable: true),
+                    Presupuesto = table.Column<double>(nullable: false),
+                    Cantidad = table.Column<int>(nullable: false),
+                    Calidad = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -299,12 +236,12 @@ namespace CitricosCaribe.Migrations
                 name: "Solicitudes",
                 columns: table => new
                 {
-                    ProductoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    EmpresaID = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaOferta = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    Calidad = table.Column<string>(type: "TEXT", nullable: true),
-                    Cantidad = table.Column<int>(type: "INTEGER", nullable: false),
-                    Presupuesto = table.Column<double>(type: "REAL", nullable: false)
+                    FechaOferta = table.Column<DateTime>(nullable: false),
+                    EmpresaID = table.Column<int>(nullable: false),
+                    ProductoID = table.Column<int>(nullable: false),
+                    Presupuesto = table.Column<double>(nullable: false),
+                    Cantidad = table.Column<int>(nullable: false),
+                    Calidad = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -327,18 +264,18 @@ namespace CitricosCaribe.Migrations
                 name: "ContratosComprasInternacionales",
                 columns: table => new
                 {
-                    EmpresaID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TrabajadorID = table.Column<int>(type: "INTEGER", nullable: false),
-                    ProductoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaContrato = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FechaOferta = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CamposOtros = table.Column<string>(type: "TEXT", nullable: true),
-                    DeAmbasPartes = table.Column<string>(type: "TEXT", nullable: true),
-                    DeLaOtraParte = table.Column<string>(type: "TEXT", nullable: true),
-                    DeUnaParte = table.Column<string>(type: "TEXT", nullable: true),
-                    DineroGanadoUSD = table.Column<double>(type: "REAL", nullable: false),
-                    ObjetoDelContrato = table.Column<string>(type: "TEXT", nullable: true),
-                    TipoPago = table.Column<string>(type: "TEXT", nullable: true)
+                    FechaContrato = table.Column<DateTime>(nullable: false),
+                    FechaOferta = table.Column<DateTime>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false),
+                    EmpresaID = table.Column<int>(nullable: false),
+                    ProductoID = table.Column<int>(nullable: false),
+                    CamposOtros = table.Column<string>(nullable: true),
+                    DineroGanadoUSD = table.Column<double>(nullable: false),
+                    DeAmbasPartes = table.Column<string>(nullable: true),
+                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    DeUnaParte = table.Column<string>(nullable: true),
+                    TipoPago = table.Column<string>(nullable: true),
+                    ObjetoDelContrato = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -367,18 +304,18 @@ namespace CitricosCaribe.Migrations
                 name: "ContratosComprasNacionales",
                 columns: table => new
                 {
-                    EmpresaID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TrabajadorID = table.Column<int>(type: "INTEGER", nullable: false),
-                    ProductoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaContrato = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FechaPedido = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CamposOtros = table.Column<string>(type: "TEXT", nullable: true),
-                    DeAmbasPartes = table.Column<string>(type: "TEXT", nullable: true),
-                    DeLaOtraParte = table.Column<string>(type: "TEXT", nullable: true),
-                    DeUnaParte = table.Column<string>(type: "TEXT", nullable: true),
-                    DineroGanadoUSD = table.Column<double>(type: "REAL", nullable: false),
-                    ObjetoDelContrato = table.Column<string>(type: "TEXT", nullable: true),
-                    TipoPago = table.Column<string>(type: "TEXT", nullable: true)
+                    FechaContrato = table.Column<DateTime>(nullable: false),
+                    FechaPedido = table.Column<DateTime>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false),
+                    EmpresaID = table.Column<int>(nullable: false),
+                    ProductoID = table.Column<int>(nullable: false),
+                    CamposOtros = table.Column<string>(nullable: true),
+                    DineroGanadoUSD = table.Column<double>(nullable: false),
+                    DeAmbasPartes = table.Column<string>(nullable: true),
+                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    DeUnaParte = table.Column<string>(nullable: true),
+                    TipoPago = table.Column<string>(nullable: true),
+                    ObjetoDelContrato = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -407,18 +344,18 @@ namespace CitricosCaribe.Migrations
                 name: "ContratosVentasInternacionales",
                 columns: table => new
                 {
-                    EmpresaID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TrabajadorID = table.Column<int>(type: "INTEGER", nullable: false),
-                    ProductoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaContrato = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FechaPedido = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CamposOtros = table.Column<string>(type: "TEXT", nullable: true),
-                    DeAmbasPartes = table.Column<string>(type: "TEXT", nullable: true),
-                    DeLaOtraParte = table.Column<string>(type: "TEXT", nullable: true),
-                    DeUnaParte = table.Column<string>(type: "TEXT", nullable: true),
-                    DineroGanadoUSD = table.Column<double>(type: "REAL", nullable: false),
-                    ObjetoDelContrato = table.Column<string>(type: "TEXT", nullable: true),
-                    TipoPago = table.Column<string>(type: "TEXT", nullable: true)
+                    FechaContrato = table.Column<DateTime>(nullable: false),
+                    FechaPedido = table.Column<DateTime>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false),
+                    EmpresaID = table.Column<int>(nullable: false),
+                    ProductoID = table.Column<int>(nullable: false),
+                    CamposOtros = table.Column<string>(nullable: true),
+                    DineroGanadoUSD = table.Column<double>(nullable: false),
+                    DeAmbasPartes = table.Column<string>(nullable: true),
+                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    DeUnaParte = table.Column<string>(nullable: true),
+                    TipoPago = table.Column<string>(nullable: true),
+                    ObjetoDelContrato = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -447,18 +384,18 @@ namespace CitricosCaribe.Migrations
                 name: "ContratosVentasNacionales",
                 columns: table => new
                 {
-                    EmpresaID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TrabajadorID = table.Column<int>(type: "INTEGER", nullable: false),
-                    ProductoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    FechaContrato = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    FechaSolicitud = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    CamposOtros = table.Column<string>(type: "TEXT", nullable: true),
-                    DeAmbasPartes = table.Column<string>(type: "TEXT", nullable: true),
-                    DeLaOtraParte = table.Column<string>(type: "TEXT", nullable: true),
-                    DeUnaParte = table.Column<string>(type: "TEXT", nullable: true),
-                    DineroGanadoUSD = table.Column<double>(type: "REAL", nullable: false),
-                    ObjetoDelContrato = table.Column<string>(type: "TEXT", nullable: true),
-                    TipoPago = table.Column<string>(type: "TEXT", nullable: true)
+                    FechaContrato = table.Column<DateTime>(nullable: false),
+                    FechaSolicitud = table.Column<DateTime>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false),
+                    EmpresaID = table.Column<int>(nullable: false),
+                    ProductoID = table.Column<int>(nullable: false),
+                    CamposOtros = table.Column<string>(nullable: true),
+                    DineroGanadoUSD = table.Column<double>(nullable: false),
+                    DeAmbasPartes = table.Column<string>(nullable: true),
+                    DeLaOtraParte = table.Column<string>(nullable: true),
+                    DeUnaParte = table.Column<string>(nullable: true),
+                    TipoPago = table.Column<string>(nullable: true),
+                    ObjetoDelContrato = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -487,9 +424,9 @@ namespace CitricosCaribe.Migrations
                 name: "MediosAsignados",
                 columns: table => new
                 {
-                    TrabajadorID = table.Column<int>(type: "INTEGER", nullable: false),
-                    MedioID = table.Column<int>(type: "INTEGER", nullable: false),
-                    Cantidad = table.Column<int>(type: "INTEGER", nullable: false)
+                    TrabajadorID = table.Column<int>(nullable: false),
+                    MedioID = table.Column<int>(nullable: false),
+                    Cantidad = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -512,12 +449,12 @@ namespace CitricosCaribe.Migrations
                 name: "TipoDireccionTrabajadores",
                 columns: table => new
                 {
-                    DireccionID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TrabajadorID = table.Column<int>(type: "INTEGER", nullable: false)
+                    TrabajadorID = table.Column<int>(nullable: false),
+                    DireccionID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_TipoDireccionTrabajadores", x => new { x.DireccionID, x.TrabajadorID });
+                    table.PrimaryKey("PK_TipoDireccionTrabajadores", x => x.TrabajadorID);
                     table.ForeignKey(
                         name: "FK_TipoDireccionTrabajadores_Direcciones_DireccionID",
                         column: x => x.DireccionID,
@@ -536,8 +473,8 @@ namespace CitricosCaribe.Migrations
                 name: "VehiculosAsignados",
                 columns: table => new
                 {
-                    VehiculoID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TrabajadorID = table.Column<int>(type: "INTEGER", nullable: false)
+                    VehiculoID = table.Column<int>(nullable: false),
+                    TrabajadorID = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {
@@ -633,16 +570,78 @@ namespace CitricosCaribe.Migrations
                 column: "DireccionID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TipoDireccionTrabajadores_TrabajadorID",
+                name: "IX_TipoDireccionTrabajadores_DireccionID",
                 table: "TipoDireccionTrabajadores",
-                column: "TrabajadorID",
-                unique: true);
+                column: "DireccionID");
 
             migrationBuilder.CreateIndex(
                 name: "IX_VehiculosAsignados_TrabajadorID",
                 table: "VehiculosAsignados",
                 column: "TrabajadorID",
                 unique: true);
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "ContratosComprasInternacionales");
+
+            migrationBuilder.DropTable(
+                name: "ContratosComprasNacionales");
+
+            migrationBuilder.DropTable(
+                name: "ContratosVentasInternacionales");
+
+            migrationBuilder.DropTable(
+                name: "ContratosVentasNacionales");
+
+            migrationBuilder.DropTable(
+                name: "MediosAsignados");
+
+            migrationBuilder.DropTable(
+                name: "Ofertas");
+
+            migrationBuilder.DropTable(
+                name: "Pedidos");
+
+            migrationBuilder.DropTable(
+                name: "Solicitudes");
+
+            migrationBuilder.DropTable(
+                name: "TipoDireccionBaseTransportes");
+
+            migrationBuilder.DropTable(
+                name: "TipoDireccionFrigorificos");
+
+            migrationBuilder.DropTable(
+                name: "TipoDireccionTrabajadores");
+
+            migrationBuilder.DropTable(
+                name: "VehiculosAsignados");
+
+            migrationBuilder.DropTable(
+                name: "Medios");
+
+            migrationBuilder.DropTable(
+                name: "Empresas");
+
+            migrationBuilder.DropTable(
+                name: "Productos");
+
+            migrationBuilder.DropTable(
+                name: "BasesTransportes");
+
+            migrationBuilder.DropTable(
+                name: "Frigorificos");
+
+            migrationBuilder.DropTable(
+                name: "Direcciones");
+
+            migrationBuilder.DropTable(
+                name: "Trabajadores");
+
+            migrationBuilder.DropTable(
+                name: "Vehiculos");
         }
     }
 }

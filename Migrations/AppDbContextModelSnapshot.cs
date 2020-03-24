@@ -453,16 +453,15 @@ namespace CitricosCaribe.Migrations
 
             modelBuilder.Entity("CitricosCaribe.Models.TipoDireccionTrabajador", b =>
                 {
-                    b.Property<int>("DireccionID")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("TrabajadorID")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("DireccionID", "TrabajadorID");
+                    b.Property<int>("DireccionID")
+                        .HasColumnType("INTEGER");
 
-                    b.HasIndex("TrabajadorID")
-                        .IsUnique();
+                    b.HasKey("TrabajadorID");
+
+                    b.HasIndex("DireccionID");
 
                     b.ToTable("TipoDireccionTrabajadores");
                 });
