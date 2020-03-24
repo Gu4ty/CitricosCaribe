@@ -1,0 +1,30 @@
+@model CitricosCaribe.Models.TipoDireccionFrigorifico
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>TipoDireccionFrigorifico</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Frigorifico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Frigorifico.ID)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Direccion.ID)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.FrigorificoID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
