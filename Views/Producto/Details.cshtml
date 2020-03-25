@@ -53,12 +53,16 @@
     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#Pedidos" role="tab" aria-controls="nav-home" aria-selected="true">Pedidos</a>
     <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#Solicitudes" role="tab" aria-controls="nav-profile" aria-selected="false">Solicitudes</a>
     <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#Ofertas" role="tab" aria-controls="nav-contact" aria-selected="false">Ofertas</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#ContratoCompraNacionales" role="tab" aria-controls="nav-contact" aria-selected="false">ContratoCompraNacionales</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#ContratoCompraInternacionales" role="tab" aria-controls="nav-contact" aria-selected="false">ContratoCompraInternacionales</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#ContratoVentaNacionales" role="tab" aria-controls="nav-contact" aria-selected="false">ContratoVentaNacionales</a>
+    <a class="nav-item nav-link" id="nav-contact-tab" data-toggle="tab" href="#ContratoVentaInternacionales" role="tab" aria-controls="nav-contact" aria-selected="false">ContratoVentaInternacionales</a>
   </div>
 </nav>
 <div class="tab-content" id="nav-tabContent">
   <div class="tab-pane fade show active" id="Pedidos" role="tabpanel" aria-labelledby="nav-home-tab">
 
-    <table class="table table-bordered table-striped">  
+    <table class="table table-bordered table-striped">  Ofertas
                 
                 <tr>
                     <th>Numero de Identificación de la Empresa</th>
@@ -149,6 +153,183 @@
 
 
   </div>
+
+  
+  <div class="tab-pane fade" id="ContratoCompraNacionales" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <table class="table table-bordered table-striped">  
+                
+                <tr>
+                    <th>Numero de Identificación de la Empresa</th>
+                    <th>Empresa</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Fecha de Contrato</th>
+                    <th>CI del tarabajador</th>
+                    <th>Dinero gastado en usd</th>
+
+                    
+                </tr>
+                @foreach (var item in Model.ContratoCompraNacionales)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaPedido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaContrato)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrabajadorID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DineroGanadoUSD)
+                        </td>
+                    </tr>
+                }
+        </table>
+
+
+
+
+  </div>
+
+
+ <div class="tab-pane fade" id="ContratoCompraInternacionales" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <table class="table table-bordered table-striped">  
+                
+                <tr>
+                    <th>Numero de Identificación de la Empresa</th>
+                    <th>Empresa</th>
+                    <th>Fecha de Oferta</th>
+                    <th>Fecha de Contrato</th>
+                    <th>CI del tarabajador</th>
+                    <th>Dinero ganado en usd</th>
+
+                    
+                </tr>
+                @foreach (var item in Model.ContratoCompraNacionales)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaPedido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaContrato)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrabajadorID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DineroGanadoUSD)
+                        </td>
+                    </tr>
+                }
+        </table>
+
+
+
+
+  </div>
+
+
+  <div class="tab-pane fade" id="ContratoVentaNacionales" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <table class="table table-bordered table-striped">  
+                
+                <tr>
+                    <th>Numero de Identificación de la Empresa</th>
+                    <th>Empresa</th>
+                    <th>Fecha de Solicitud</th>
+                    <th>Fecha de Contrato</th>
+                    <th>CI del tarabajador</th>
+                    <th>Dinero ganado en usd</th>
+
+                    
+                </tr>
+                @foreach (var item in Model.ContratoCompraNacionales)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaPedido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaContrato)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrabajadorID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DineroGanadoUSD)
+                        </td>
+                    </tr>
+                }
+        </table>
+
+
+
+
+  </div>
+
+  <div class="tab-pane fade" id="ContratoVentaInternacionales" role="tabpanel" aria-labelledby="nav-contact-tab">
+        <table class="table table-bordered table-striped">  
+                
+                <tr>
+                    <th>Numero de Identificación de la Empresa</th>
+                    <th>Empresa</th>
+                    <th>Fecha de Pedido</th>
+                    <th>Fecha de Contrato</th>
+                    <th>CI del tarabajador</th>
+                    <th>Dinero ganado en usd</th>
+
+                    
+                </tr>
+                @foreach (var item in Model.ContratoCompraNacionales)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.ID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Empresa.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaPedido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaContrato)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TrabajadorID)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.DineroGanadoUSD)
+                        </td>
+                    </tr>
+                }
+        </table>
+
+
+
+
+  </div>
+
+</div>
 </div>
 
 
