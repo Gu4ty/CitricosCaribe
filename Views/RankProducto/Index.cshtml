@@ -1,0 +1,57 @@
+@model IEnumerable<CitricosCaribe.Models.RankProductoViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ranking de los Productos con mas ganancias segun contratos</h1>
+<br><br>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Producto
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CCISortParm"]">Dinero Ganado en Contratos de Compra Internacional</a>
+                
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CCNSortParm"]">Dinero Ganado en Contratos de Compra Nacional</a>
+               
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CVISortParm"]">Dinero Ganado en Contratos de Venta Internacional</a>
+                
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewData["CVNSortParm"]">Dinero Ganado en Contratos de Venta Internacional</a>
+                
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                <a asp-area="" asp-controller="Producto" asp-action="Details" asp-route-id="@item.Producto.ID" >@Html.DisplayFor(modelItem => item.Producto.Nombre)</a>
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DineroGanadoCCI)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.DineroGanadoCCN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DineroGanadoCVI)
+            </td>
+             <td>
+                @Html.DisplayFor(modelItem => item.DineroGanadoCVN)
+            </td>
+            
+        </tr>
+}
+    </tbody>
+</table>

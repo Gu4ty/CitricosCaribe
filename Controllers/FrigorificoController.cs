@@ -22,7 +22,8 @@ namespace CitricosCaribe.Controllers
         // GET: Frigorifico
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Frigorificos.ToListAsync());
+        
+            return View(await _context.Frigorificos.ToListAsync());   
         }
 
         // GET: Frigorifico/Details/5
